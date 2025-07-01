@@ -2,7 +2,8 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.db.database import SessionLocal
 from app.models.rol_model import  Rol
-from app.schemas.rol_schema import RolCreateResponse, RolCreate
+from app.schemas.rol_schema import RolCreateResponse, RolCreate, RolOut
+from typing import List
 
 router = APIRouter()
 
@@ -12,6 +13,14 @@ def get_db():
         yield db
     finally:
         db.close()
+
+@router.get("/obtener", response_model=List[RolOut])
+def obtener_roles( db: Session = Depends(get_db)):
+    try :
+        roles =  db.query(Rol).all()
+        return roles
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error al obtener los roles: {str(e)}")
 
 @router.post("/Crear", response_model=RolCreateResponse)
 def crear_rol(rol: RolCreate, db: Session = Depends(get_db)):
@@ -33,7 +42,7 @@ def crear_rol(rol: RolCreate, db: Session = Depends(get_db)):
         db.refresh(nuevo_rol)
     except Exception as e:
         db.rollback()
-        raise HTTPException(status_code=500, detail="Error al guardar el rol")
+        raise HTTPException(status_code=500, detail=f"Error al guardar el rol: {str(e)}")
     return {
         "message": "Se ha creado un nuevo rol",
         "rol": nuevo_rol

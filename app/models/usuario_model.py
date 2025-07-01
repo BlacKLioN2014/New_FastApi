@@ -1,16 +1,16 @@
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Boolean
 from sqlalchemy.orm import  relationship
 from app.db.database import Base
-from datetime import datetime, UTC
+from datetime import datetime, timezone
 
 class Usuario(Base):
     __tablename__ = "usuario"
 
-    id_usuario = Column(Integer, primary_key=True, index=True)
+    id= Column(Integer, primary_key=True, index=True)
     nombre_usuario = Column(String, nullable=False)
-    correo_electronico = Column(String, nullable=False)
+    correo_electronico = Column(String, nullable=False, unique=True)
     contrasena_hash = Column(String, nullable=False)
-    fecha_registro = Column(DateTime(timezone=True), default=datetime.now(UTC))
+    fecha_registro = Column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
     estado = Column(Boolean, default=True)
     ultimo_login = Column(DateTime, nullable= True)
 
