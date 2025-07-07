@@ -1,10 +1,11 @@
-from fastapi.security import OAuth2PasswordBearer
 from fastapi import Depends, HTTPException, status
+from fastapi.security import  HTTPBearer, HTTPAuthorizationCredentials
 from app.utils.jwt_manager import verificar_token
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="usuarios/login")
+security = HTTPBearer()
 
-def obtener_usuario_id(token: str = Depends(oauth2_scheme)) -> str:
+def obtener_usuario_id(credentials: HTTPAuthorizationCredentials = Depends(security)) -> str:
+    token = credentials.credentials
     payload = verificar_token(token)
     usuario_id = payload.get("sub")
     if usuario_id is None:

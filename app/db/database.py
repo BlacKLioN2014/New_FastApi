@@ -1,11 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
-# from dotenv import load_dotenv
-
-# load_dotenv()
-
-DATABASE_URL = "postgresql://postgres:Mepiel24@127.0.0.1:5432/postgres"
-# DATABASE_URL = os.getenv("DATABASE_URL")
+from app.utils.config import  DATABASE_URL
 
 # Imprime para verificar que se cargó bien
 print("DATABASE_URL:", DATABASE_URL)

@@ -7,7 +7,14 @@ class UsuarioCreate(BaseModel):
     correo_electronico: EmailStr
     contrasena: constr(min_length=6)
     estado: Optional[bool] = True
-    ultimo_login: Optional[datetime] = None
+    id_rol: int
+
+class UsuarioEditar(BaseModel):
+    id:int
+    nombre_usuario: constr(min_length=3, max_length=15)
+    correo_electronico: EmailStr
+    contrasena: constr(min_length=6)
+    estado: Optional[bool] = True
     id_rol: int
 
 class UsuarioLogin(BaseModel):
@@ -29,6 +36,8 @@ class UsuarioCreateResponse(BaseModel):
 class UsuarioLoginResponse(BaseModel):
     usuario: UsuarioOut
     token: str
+    token_type: str
+    expire: str
 
 
 class Config:

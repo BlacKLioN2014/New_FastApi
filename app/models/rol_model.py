@@ -13,18 +13,3 @@ class Rol(Base):
     estado = Column(Boolean, default=True)
     fecha_creacion = Column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
     usuarios = relationship("Usuario", back_populates="rol")
-
-
-class RolEnum(str, Enum):
-    ADMINISTRADOR = "Administrador"
-    MORTAL = "Mortal"
-    DESCONOCIDO = "Número no reconocido"
-
-def segun_rol(numero: int) -> Rol:
-    match numero:
-        case 1:
-            return Rol.ADMINISTRADOR
-        case 2:
-            return Rol.MORTAL
-        case _:
-            return Rol.DESCONOCIDO

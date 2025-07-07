@@ -1,10 +1,7 @@
 import jwt
 from datetime import datetime, timedelta,timezone
 from fastapi import HTTPException, status
-
-SECRET_KEY = "El que siembra vientos cosecha tempestades"
-ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
+from app.utils.config import SECRET_KEY,ALGORITHM,ACCESS_TOKEN_EXPIRE_MINUTES
 
 def crear_token(data: dict) -> str:
     to_encode = data.copy()

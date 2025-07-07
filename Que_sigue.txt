@@ -1,0 +1,26 @@
+✅ 1. Documenta tu API con Swagger (OpenAPI) HECHO
+
+✅ 2. Conexión a una base de datos remota             HECHO
+
+✅ 3. Preparar archivo .env + python-dotenv          HECHO
+
+✅ 4. Tests automatizados con pytest                      Innecesario
+
+✅ 5. Integración con frontend (Angular, React o Flutter)
+
+✅ 6. Despliegue a producción real Usa Gunicorn o uWSGI.
+
+✅ 7. Seguridad y Robustez
+Rate limiting y CORS: Usa flask-limiter para evitar abusos. Asegura las políticas CORS.             HECHO
+
+✅ 8. Validación de entrada con Marshmallow o pydantic para prevenir datos maliciosos.           HECHO
+
+✅ 9. Servidor: Despliega en un VPS (como DigitalOcean) o en algún PaaS como Render, Railway, o incluso en un Docker dentro de EC2.
+
+✅ 10. Dockerización completa: Si no lo has hecho, dockeriza tu app para facilitar el despliegue.
+
+✅ 11. Tareas en segundo plano
+Si necesitas sincronizar con SAP en segundo plano, usa Celery + Redis o RQ para tareas asíncronas.
+
+✅ 12. Inteligencia / lógica de negocio
+Ya conectado a SAP, puedes crear reglas de negocio más complejas, sincronizadores inteligentes, análisis de datos o incluso predicciones con modelos ML si llega el caso.
